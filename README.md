@@ -241,6 +241,11 @@ Si están listos nos dicen que en uno de los casos no dependemos de Spark pero e
 
 3. Al pasar el job se ven vulnerabilidades graves (STOP)
 4. El propio reporte te indica que se puede subir la versión de la dependencia a las 1.31 para solventar esta vulnerabilidad. (HIGH Vulnerability found in non-os package type (java) - /opt/spark/dist/jars/snakeyaml-1.26.jar (fixed in: 1.31)(GHSA-3mc7-4q67-w48m - https://github.com/advisories/GHSA-3mc7-4q67-w48m))
+
+>(analytic: https://builder.int.stratio.com/job/Anchore/job/Rocket/job/on-demand-vulns-report/19/FAIL_20-_20Anchore_20Report_20analytic-environment_3a3_2e0_2e0-SNAPSHOT/
+
+>analytic-light: https://builder.int.stratio.com/job/Anchore/job/Rocket/job/on-demand-vulns-report/19/FAIL_20-_20Anchore_20Report_20analytic-environment-light_3a3_2e0_2e0-SNAPSHOT/ )
+
 5. La imagen: https://github.com/Stratio/intelligence-analytic-environment extiende de la imagen base https://github.com/Stratio/intelligence-docker-base la cual es la que lleva esa dependencia. Tiene que ver con la distribición de Spark /opt/spark/dist/jars/
 6. Abrimos en este caso un Waiver a CyberSec. https://stratio.atlassian.net/browse/CYB-66661
 
