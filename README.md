@@ -197,7 +197,9 @@ Estamos utilzando __anchore__ para la detección de vulnerabilidades.
 Un ejemplo del informe que saca el job de anchore: https://builder.int.stratio.com/job/Anchore/job/Rocket/job/on-demand-vulns-report/17/FAI[…]0Report_20rocket-mleap-microservice_3a3_2e0_2e0-SNAPSHOT/
 
 
-Nos interesa consultar la sección de policy ya que es donde viene el listado de vulnerabilidades con gate action = stop que nos impedirían sacar una prerelease si no arreglamos antes la vulnerabilidad. En la captura podéis ver por ejemplo que el CVE-2022-0778+libssl1.1 bloquearía la prerelease, podéis ver información sobre como arreglar el CVE: "HIGH Vulnerability found in os package type (dpkg) - libssl1.1 (fixed in: 1.1.1-1ubuntu2.1~18.04.15)(CVE-2022-0778 - http://people.ubuntu.com/~ubuntu-security/cve/CVE-2022-0778)" y si es un jar suele venir la ruta, etc..
+Nos interesa consultar la sección de policy ya que es donde viene el listado de vulnerabilidades con gate action = stop que nos impedirían sacar una prerelease si no arreglamos antes la vulnerabilidad. 
+
+## Procedimiento
 
 Una vez que tenemos una vulnerabilidad hay varias posibilidades:
 
@@ -206,14 +208,15 @@ Una vez que tenemos una vulnerabilidad hay varias posibilidades:
 - no poder subir de versión porque son dependencias de módulos de Stratio como Spark/Crossdata que no - - - pueden subir por lo que sea o  bien librerías externas que todavía no han liberado nuevas versiones
 otras
 
-## Procedimiento
+### Waivers
 
 En caso de no poder subir versión hay que abrir un ticket a cybersec de tipo support request y justificando siempre la causa para no arreglar la vulnerabilidad con la información que indican a continuación
 
 >Con el fin de optimizar/cuantificar el proceso, el equipo de Cybersec sólo atenderá peticiones de apertura de waivers de Anchore a través de issues de tipo "Support Request" abiertas al equipo de Cyber (CYB) en JIRA, y estas deberán contener la URL de jenkins del pipeline fallido así como el nombre de la policy de Anchore que se debe modificar.
 
 Este es el repo donde cybersec añade las excepciónes de vulnerabilidades: https://github.com/Stratio/anchore-policies
-En principio intenta gestionar las dependencias de modo que si añaden una vulnerabilidad a la whitelist en Spark también se aplica sobre los módulos que dependen de Spark pero no siempre cubre todos los casos.
+
+En principio intenta gestionar las dependencias de modo que si añaden una vulnerabilidad a la __whitelist__ en Spark también se aplica sobre los módulos que dependen de Spark pero no siempre cubre todos los casos.
 
 ### **Ejemplos de tickets**
 
@@ -239,4 +242,5 @@ Si están listos nos dicen que en uno de los casos no dependemos de Spark pero e
 3. Al pasar el job se ven vulnerabilidades graves (STOP)
 4. El propio reporte te indica que se puede subir la versión de la dependencia a las 1.31 para solventar esta vulnerabilidad. (HIGH Vulnerability found in non-os package type (java) - /opt/spark/dist/jars/snakeyaml-1.26.jar (fixed in: 1.31)(GHSA-3mc7-4q67-w48m - https://github.com/advisories/GHSA-3mc7-4q67-w48m))
 5. La imagen: https://github.com/Stratio/intelligence-analytic-environment extiende de la imagen base https://github.com/Stratio/intelligence-docker-base la cual es la que lleva esa dependencia. Tiene que ver con la distribición de Spark /opt/spark/dist/jars/
+6. Abrimos en este caso un Waiver a CyberSec. https://stratio.atlassian.net/browse/CYB-66661
 
