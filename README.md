@@ -78,6 +78,8 @@ Password:stratio
 Jenkins nos permite más o menos fácil ver los repos que tenemos activos aunque algunos no aplican
 https://builder.int.stratio.com/
 
+El ususario es el de LDAP
+
 Jobs asociados a repos de Rocket: https://builder.int.stratio.com/job/Rocket/
 
 Repos asociados al PIT pero incluye saas-universe y kubernetes-universe donde vamos metiendo los descriptores/reglas de CCT. Estos descriptores también están en nuestros repos:
@@ -215,3 +217,14 @@ Ejemplo de service request: > https://stratio.atlassian.net/browse/CYB-64224
 Creado nuevo copiando el de intelligence: > https://stratio.atlassian.net/browse/CYB-66650
 
 Si están listos nos dicen que en uno de los casos no dependemos de Spark pero esperemos que lo den por bueno
+
+---
+### Prueba en imágenes analytic
+
+1. Sería lanzar este job => bajo demanda haciendo un build with parameters de este job https://builder.int.stratio.com/job/Anchore/job/Rocket/job/on-demand-vulns-report/ indicando un listado de imágenes (si no recuerdo mal una imágen por fila)
+
+
+2. Pasar las imágenes de anaytic
+    - Imágenes:
+        - qa.int.stratio.com/stratio/analytic-environment:3.0.0-SNAPSHOT
+        - qa.int.stratio.com/stratio/analytic-environment-light:3.0.0-SNAPSHOT
