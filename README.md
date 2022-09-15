@@ -1,5 +1,4 @@
-# CHEAT SHEET 
-# ROCKET ONBOARDING
+# CHEAT SHEET _ROCKET ONBOARDING_
 
 ---
 
@@ -32,10 +31,10 @@ User/pass: El propio de LDAP
 
 ==REVISAR==
 
-- GIT conn:
-URL: http://pitservices.labs.stratio.com:8089
-PAT: etjFr9MBasmvH5Jir535
-
+- PIT:
+Gitlab: http://pitservices.labs.stratio.com:8089/ --> rocket/12345678
+Nexus: http://pitservices.labs.stratio.com:8081 --> user: admin pass: 1234
+Jenkins: http://pitservices.labs.stratio.com:8080/ -> admin/1234
 
 - ENTORNO DEV:
 https://bootstrap.xray.labs.stratio.com/
