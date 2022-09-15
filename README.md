@@ -5,16 +5,15 @@
 
 # DOCUMENTACION
 
-__pegaso83.docs.stratio.com__: 
+__[pegaso83](https://pegaso83.docs.stratio.com/)__: 
 user:stratiouser1
 password:7T8SUbT
 
-__next.docs.stratio.com__:
+__[next](https://next.docs.stratio.com/)__:
 user:stratiouser1
 password:7T8SUbT
 
-__Nueva Antora__:
-https://docs.stratio.com/
+__[Nueva Antora](https://docs.stratio.com/)__:
 User/pass: El propio de LDAP
 
 # ENTORNOS
@@ -33,7 +32,9 @@ User/pass: El propio de LDAP
 
 - PIT:
 Gitlab: http://pitservices.labs.stratio.com:8089/ --> rocket/12345678
+
 Nexus: http://pitservices.labs.stratio.com:8081 --> user: admin pass: 1234
+
 Jenkins: http://pitservices.labs.stratio.com:8080/ -> admin/1234
 
 - ENTORNO DEV:
