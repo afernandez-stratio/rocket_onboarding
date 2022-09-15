@@ -13,6 +13,12 @@ password:7T8SUbT
 __[Nueva Antora](https://docs.stratio.com/)__:
 User/pass: El propio de LDAP
 
+Es importante estar dado de alta en Jira para todo producto.
+
+Para ello se necesita crear un Jira en el Team Jira:
+
+Ejemplo: https://stratio.atlassian.net/browse/TJ-3641
+
 # ENTORNOS
 
 ## TGZ's DCOS/MARATHON 
@@ -200,6 +206,7 @@ Una vez que tenemos una vulnerabilidad hay varias posibilidades:
 - no poder subir de versión porque son dependencias de módulos de Stratio como Spark/Crossdata que no - - - pueden subir por lo que sea o  bien librerías externas que todavía no han liberado nuevas versiones
 otras
 
+## Procedimiento
 
 En caso de no poder subir versión hay que abrir un ticket a cybersec de tipo support request y justificando siempre la causa para no arreglar la vulnerabilidad con la información que indican a continuación
 
@@ -208,7 +215,7 @@ En caso de no poder subir versión hay que abrir un ticket a cybersec de tipo su
 Este es el repo donde cybersec añade las excepciónes de vulnerabilidades: https://github.com/Stratio/anchore-policies
 En principio intenta gestionar las dependencias de modo que si añaden una vulnerabilidad a la whitelist en Spark también se aplica sobre los módulos que dependen de Spark pero no siempre cubre todos los casos.
 
-### **Ejemplo**
+### **Ejemplos de tickets**
 
 https://builder.int.stratio.com/job/Rocket/job/discovery/view/change-requests/job/PR-184/3/
 
@@ -219,12 +226,17 @@ Creado nuevo copiando el de intelligence: > https://stratio.atlassian.net/browse
 Si están listos nos dicen que en uno de los casos no dependemos de Spark pero esperemos que lo den por bueno
 
 ---
-### Prueba en imágenes analytic
+### Prueba real en imágenes analytic
 
 1. Sería lanzar este job => bajo demanda haciendo un build with parameters de este job https://builder.int.stratio.com/job/Anchore/job/Rocket/job/on-demand-vulns-report/ indicando un listado de imágenes (si no recuerdo mal una imágen por fila)
 
 
-2. Pasar las imágenes de anaytic
+2. Pasar las imágenes de anaytic por linea (Specify one tag per line.)
     - Imágenes:
         - qa.int.stratio.com/stratio/analytic-environment:3.0.0-SNAPSHOT
         - qa.int.stratio.com/stratio/analytic-environment-light:3.0.0-SNAPSHOT
+
+3. Al pasar el job se ven vulnerabilidades graves (STOP)
+4. El propio reporte te indica que se puede subir la versión de la dependencia a las 1.31 para solventar esta vulnerabilidad. (HIGH Vulnerability found in non-os package type (java) - /opt/spark/dist/jars/snakeyaml-1.26.jar (fixed in: 1.31)(GHSA-3mc7-4q67-w48m - https://github.com/advisories/GHSA-3mc7-4q67-w48m))
+5. La imagen: https://github.com/Stratio/intelligence-analytic-environment extiende de la imagen base https://github.com/Stratio/intelligence-docker-base la cual es la que lleva esa dependencia. Tiene que ver con la distribición de Spark /opt/spark/dist/jars/
+
