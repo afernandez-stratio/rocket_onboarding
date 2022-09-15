@@ -78,7 +78,7 @@ Password:stratio
 Jenkins nos permite más o menos fácil ver los repos que tenemos activos aunque algunos no aplican
 https://builder.int.stratio.com/
 
-El ususario es el de LDAP
+El ususario de login es el de LDAP
 
 Jobs asociados a repos de Rocket: https://builder.int.stratio.com/job/Rocket/
 
