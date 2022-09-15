@@ -1,8 +1,5 @@
 # CHEAT SHEET _ROCKET ONBOARDING_
 
----
-
-
 # DOCUMENTACION
 
 __[pegaso83](https://pegaso83.docs.stratio.com/)__: 
@@ -31,33 +28,33 @@ User/pass: El propio de LDAP
 ==REVISAR==
 
 - PIT:
-Gitlab: http://pitservices.labs.stratio.com:8089/ --> rocket/12345678
+    - Gitlab: http://pitservices.labs.stratio.com:8089/ --> rocket/12345678
+    - Nexus: http://pitservices.labs.stratio.com:8081 --> user: admin pass: 1234
+    - Jenkins: http://pitservices.labs.stratio.com:8080/ -> admin/1234
 
-Nexus: http://pitservices.labs.stratio.com:8081 --> user: admin pass: 1234
-
-Jenkins: http://pitservices.labs.stratio.com:8080/ -> admin/1234
 
 - ENTORNO DEV:
 https://bootstrap.xray.labs.stratio.com/
-user: qa1owner
-password: 1234
-user: admin
-password: 1234
-Tenant: NONE y s000001
+    - user: qa1owner
+    - password: 1234
+    - user: admin
+    - password: 1234
+    - Tenant: NONE y s000001
 
 - ENTORNO OSCAR:
 https://bootstrap.oscar.hetzner.stratio.com/#/login
-user admin 1234
+    - user admin 
+    - pass 1234
 
 - ENTORNO FULLENERO:
 (/etc/hosts --> 10.200.21.26 fullereno04.labs.stratio.com)
 https://bootstrap.fullereno.labs.stratio.com/
-tenant: NONE
-user: admin
-password: 1234
-https://fullereno04.labs.stratio.com/s000001-rocket-validation/
-user: qa1owner
-password: 1234
+    - tenant: NONE
+    - user: admin
+    - password: 1234
+    - https://fullereno04.labs.stratio.com/s000001-rocket-validation/
+    - user: qa1owner
+    - password: 1234
 
 - ENTORNO NIGTHLY:
 https://bootstrap.nightlyrocket.labs.stratio.com/
@@ -65,7 +62,8 @@ https://bootstrap.nightlyrocket.labs.stratio.com/
 
 - INTELLIGENCE:
 MULTIUSER:
-Administrador - https://bootstrap.xray.labs.stratio.com/service/s000001-asoriano-intelligence/
+    - Administrador 
+    - https://bootstrap.xray.labs.stratio.com/service/s000001-asoriano-intelligence/
 
 - ANALYTIC:
 Usuario - https://public01.xray.labs.stratio.com/s000001-asoriano-intelligence/
