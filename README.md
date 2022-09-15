@@ -164,7 +164,22 @@ mvn clean -U install -DskipITs -DskipUTs -Dlicense.skip=true
 
 ## **EJECUTAR**
 
-Compilar y arrancar UI
+__Necesitamos instalar miniconda3.__
+
+https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+Bajar el .sh y ejecutarlo.
+
+Posterior a tener conda, nos vamos al proyecto de rocket-workspace:
+
+1. Vamos al submodulo de rocket-core -> developer_utils -> python_env
+2. Ejecutamos el __python-dev-env-creation.sh__
+3. Si usamos intelliJ tenemos que crear una Run Configuration:
+
+- En Build and Run: __Java 8 / -cp serving-api__
+- Main class: __com.stratio.sparta.serving.api.Sparta__
+- Env args: __ENABLE_SCHEDULING_PLANNED_QUALITY_RULES=true;MLFLOW_CONDA_HOME=/home/tu_user/miniconda3;SPARK_SECURITY_CUSTOM_CLASSLOADER_ENABLED=true;SPARTA_BOOTSTRAP_MODE=local;SPARTA_LOG_LEVEL=DEBUG;SPARTA_MLFLOW_LAUNCHER_CMD=/you_path/rocket-workspace/rocket-core/python_venv/bin/mlflow__
+
 
 ```
 #!/bin/bash
