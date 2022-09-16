@@ -97,19 +97,21 @@ En QA también utilizan alguno repo común adicional: https://builder.int.strati
 
 ## **REQUISITOS**
 
-### DOCKER
+### Tener instalado DOCKER
 
 Tenemos que tener instalado docker para hacer uso de imágenes
 
-### SCALA / JDK
+### Tener instalado SCALA / JDK
 
-Para compilar se requiere JDK 8. Ver si por defecto tenemos instalada la 8 si no tenemos que cambiarla
+El proyecto hace uso de Java8 / Scala 2.12. Por lo que necesitamos instalar ambas.
+
+En caso de ya tenerlas instaladas, ver si por defecto tenemos instalada la 8 si no tenemos que cambiarla
 
 ```bash
 update-alternatives --config java
 ```
 
-### Maven local
+### Tener instalado Maven
 
 Instalar en local Apache Maven. Bien con apt-get o instancia local descargada desde Apache Maven y seteando sus variables de entorno M2_HOME, JAVA_HOME, etc..
 
@@ -142,6 +144,12 @@ nvm alias rocket 14.15.3
 nvm use rocket
 ```
 
+### Tener instalado Miniconda3/Python
+
+__Necesitamos instalar miniconda3__ para ejecutar el servidor
+
+Podemos bajar el siguiente [script de instalación](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh ) y ejecutarlo para hacer la instalación. Con miniconda te instala Python el cual también necesitamos
+
 ## **CODIGO**
 
 ### Github
@@ -151,6 +159,14 @@ Clonar el proyecto de rocket con los submódulos de git.
 ```bash
 git clone git@github.com:Stratio/rocket-workspace.git
 ```
+
+La primera vez necesitamos actualizar los submódulos:
+
+```bash
+git submodule update --remote
+git submodule update --init --recursive
+```
+Por otro lado, si se está usando el IDE de IntellJ podemos crear un proyecto a partir del repositorio de github autorizando el acceso.
 
 Debemos de apuntar en todos los proyectos a **master**
 
@@ -169,8 +185,6 @@ mvn clean -U install -DskipITs -DskipUTs -Dlicense.skip=true
 ## **EJECUTAR**
 
 > DISCLAIMERS
-> - __Necesitamos instalar miniconda3.__
->   - https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh Bajar el .sh y ejecutarlo.
 > - Asegurar que el IDE (intelliJ o el que sea) tenga configurada Java 8 y no cualquier otra SDK. Así mismo asegurarse con la versión de Scala 2.12
 >
 >
@@ -213,7 +227,6 @@ Para ejecutar la UI únicamente
 PATH=[YOUR PATH]/rocket-workspace/rocket-ui/node/:$PATH
 cd [YOUR PATH]/rocket-workspace/rocket-ui && npm start:safe
 ```
-
 
 Levanta la UI en el puerto 4200 http://localhost:4200
 
