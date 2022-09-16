@@ -191,23 +191,33 @@ Posterior a tener aseguradas las versiones correctas, conda instalado y docker c
 - Main class: __com.stratio.sparta.serving.api.Sparta__
 - Env args: __ENABLE_SCHEDULING_PLANNED_QUALITY_RULES=true;MLFLOW_CONDA_HOME=/home/tu_user/miniconda3;SPARK_SECURITY_CUSTOM_CLASSLOADER_ENABLED=true;SPARTA_BOOTSTRAP_MODE=local;SPARTA_LOG_LEVEL=DEBUG;SPARTA_MLFLOW_LAUNCHER_CMD=/you_path/rocket-workspace/rocket-core/python_venv/bin/mlflow__
 
-### ROCKET
+### ROCKET UI
+
+En este punto tenemos 2 opciones. Podemos compilar vía maven el proyecto rocket-ui. El cual se ejecutaran los comandos de npm pero sin embargo irá más lento y perdemos live reload.
+
+De cara a facilitar la ejecución podemos hacer uso de los siguientes scripts:
+
+Para establecer node en el path, compilar y ejecutar
+```
+#!/bin/bash
+
+PATH=[YOUR PATH]/rocket-workspace/rocket-ui/node/:$PATH
+cd [YOUR PATH]/rocket-workspace/rocket-ui && npm i && npm run start:safe
+```
+
+Para ejecutar la UI únicamente
 
 ```
 #!/bin/bash
 
-PATH=[YOUR PATH]/rocket-workspace-2.2/rocket-ui/node/:$PATH
-cd [YOUR PATH]/rocket-workspace-2.2/rocket-ui && npm i && npm run start:safe
+PATH=[YOUR PATH]/rocket-workspace/rocket-ui/node/:$PATH
+cd [YOUR PATH]/rocket-workspace/rocket-ui && npm start:safe
 ```
 
-Ejecutar
 
-```
-#!/bin/bash
+Levanta la UI en el puerto 4200 http://localhost:4200
 
-PATH=[YOUR PATH]/rocket-workspace-2.2/rocket-ui/node/:$PATH
-cd [YOUR PATH]/rocket-workspace-2.2/rocket-ui && npm start
-```
+---
 
 # **VULNERABILIDADES**
 
