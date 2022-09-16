@@ -31,7 +31,7 @@ Ejemplo: https://stratio.atlassian.net/browse/TJ-3641
 
 ### URLS
 
-==REVISAR==
+# <==REVISAR==>
 
 - PIT:
     - Gitlab: http://pitservices.labs.stratio.com:8089/ --> rocket/12345678
@@ -164,22 +164,26 @@ mvn clean -U install -DskipITs -DskipUTs -Dlicense.skip=true
 
 ## **EJECUTAR**
 
-__Necesitamos instalar miniconda3.__
+> DISCLAIMERS
+> - __Necesitamos instalar miniconda3.__
+>   - https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh Bajar el .sh y ejecutarlo.
+> - Asegurar que el IDE (intelliJ o el que sea) tenga configurada Java 8 y no cualquier otra SDK. Así mismo asegurarse con la versión de Scala 2.12
+>
+>
 
-https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+Posterior a tener aseguradas las versiones correctas y conda instalado, nos vamos al proyecto de rocket-workspace:
 
-Bajar el .sh y ejecutarlo.
-
-Posterior a tener conda, nos vamos al proyecto de rocket-workspace:
+### ROCKET SERVIDOR:
 
 1. Vamos al submodulo de rocket-core -> developer_utils -> python_env
-2. Ejecutamos el __python-dev-env-creation.sh__
+2. Ejecutamos el __python-dev-env-creation.sh__ Esto nos creará una carpeta en el root del workspace que posteriormente se usará para la ejecución del servidor.
 3. Si usamos intelliJ tenemos que crear una Run Configuration:
 
 - En Build and Run: __Java 8 / -cp serving-api__
 - Main class: __com.stratio.sparta.serving.api.Sparta__
 - Env args: __ENABLE_SCHEDULING_PLANNED_QUALITY_RULES=true;MLFLOW_CONDA_HOME=/home/tu_user/miniconda3;SPARK_SECURITY_CUSTOM_CLASSLOADER_ENABLED=true;SPARTA_BOOTSTRAP_MODE=local;SPARTA_LOG_LEVEL=DEBUG;SPARTA_MLFLOW_LAUNCHER_CMD=/you_path/rocket-workspace/rocket-core/python_venv/bin/mlflow__
 
+### ROCKET UI:
 
 ```
 #!/bin/bash
