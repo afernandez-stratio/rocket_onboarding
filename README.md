@@ -97,6 +97,10 @@ En QA también utilizan alguno repo común adicional: https://builder.int.strati
 
 ## **REQUISITOS**
 
+### DOCKER
+
+Tenemos que tener instalado docker para hacer uso de imágenes
+
 ### SCALA / JDK
 
 Para compilar se requiere JDK 8. Ver si por defecto tenemos instalada la 8 si no tenemos que cambiarla
@@ -171,7 +175,11 @@ mvn clean -U install -DskipITs -DskipUTs -Dlicense.skip=true
 >
 >
 
-Posterior a tener aseguradas las versiones correctas y conda instalado, nos vamos al proyecto de rocket-workspace:
+Arrancar un postgres en local con Docker:
+
+> docker run -d -e POSTGRES_HOST_AUTH_METHOD=trust -p 5432:5432 postgres:9.6
+
+Posterior a tener aseguradas las versiones correctas, conda instalado y docker con postgres lanzado, nos vamos al proyecto de rocket-workspace:
 
 ### ROCKET SERVIDOR:
 
@@ -183,7 +191,7 @@ Posterior a tener aseguradas las versiones correctas y conda instalado, nos vamo
 - Main class: __com.stratio.sparta.serving.api.Sparta__
 - Env args: __ENABLE_SCHEDULING_PLANNED_QUALITY_RULES=true;MLFLOW_CONDA_HOME=/home/tu_user/miniconda3;SPARK_SECURITY_CUSTOM_CLASSLOADER_ENABLED=true;SPARTA_BOOTSTRAP_MODE=local;SPARTA_LOG_LEVEL=DEBUG;SPARTA_MLFLOW_LAUNCHER_CMD=/you_path/rocket-workspace/rocket-core/python_venv/bin/mlflow__
 
-### ROCKET UI:
+### ROCKET
 
 ```
 #!/bin/bash
