@@ -230,6 +230,50 @@ cd [YOUR PATH]/rocket-workspace/rocket-ui && npm start:safe
 
 Levanta la UI en el puerto 4200 http://localhost:4200
 
+### EJECUTAR MLPROJECT
+
+Crear nuevo proyecto de tipo MLProject
+MLFLow 
+
+TIpo Example -> Por sencillez
+
+Seguir los pasos del README que genera
+
+Ir al catálogo y crear un dataset -> CREATE TABLE bla bla bla
+
+Cambiar el HDFS a FileSystem local al csv del ejemplo wine_quality
+
+
+### METODOLOGIA COLABORATIVA
+
+1. Hacer FORK de stratio/rocket-core
+2. git clone git@github.com:adelpozo-stratio/rocket-core.git
+3. git remote -v
+
+>     origin git@github.com:adelpozo-stratio/rocket-core.git (fetch)
+>     origin git@github.com:adelpozo-stratio/rocket-core.git (push)
+
+
+4. git remote add upstream git@github.com:Stratio/rocket-core.git
+5. git remote -v
+
+>   origin	git@github.com:adelpozo-stratio/rocket-core.git (fetch)
+
+>   origin	git@github.com:adelpozo-stratio/rocket-core.git (push)
+
+>   upstream	git@github.com:Stratio/rocket-core.git (fetch)
+
+>   upstream	git@github.com:Stratio/rocket-core.git (push)
+
+6. git pull upstream master
+
+> Desde github.com:Stratio/rocket-core
+> * branch                master     -> FETCH_HEAD
+> * [nueva rama]          master     -> upstream/master
+>Ya está actualizado.
+
+7. git checkout -b feature/spark-conf-workers
+
 ---
 
 # **VULNERABILIDADES**
