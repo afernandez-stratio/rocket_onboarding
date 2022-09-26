@@ -2,6 +2,7 @@
 
 # DOCUMENTACION
 
+
 __[pegaso83](https://pegaso83.docs.stratio.com/)__: 
 user:stratiouser1
 password:7T8SUbT
@@ -133,9 +134,75 @@ Default locale: es_ES, platform encoding: UTF-8
 OS name: "linux", version: "4.15.0-192-generic", arch: "amd64", family: "unix"
 ```
 
+OJO con el archivo de configuración de maven (/usr/share/maven/conf/settings.xml), es es necesario poner el siguiente:
+
+```bash
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <localRepository />
+  <interactiveMode />
+  <usePluginRegistry />
+  <offline />
+  <pluginGroups />
+  <servers />
+  <build>
+    <pluginGroups>
+      <pluginGroup>org.ensime.maven.plugins</pluginGroup>
+    </pluginGroups>
+  </build>
+  <mirrors>
+    <mirror>
+      <id>stratio-snapshots</id>
+      <url>http://sodio.int.stratio.com/repository/public</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
+  <profiles>
+    <profile>
+      <id>nexus</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>thirdparty-snapshots</id>
+          <url>http://sodio.int.stratio.com/repository/thirdparty-snapshots</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+</settings>
+```
+
 ### Tener instalado npm local
 
-Lo más sencillo es instalando y haciendo uso del NVM
+Lo más sencillo es instalando y haciendo uso del NVM, también versiones superiores a las pintadas abajo:
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
@@ -154,10 +221,54 @@ Podemos bajar el siguiente [script de instalación](https://repo.anaconda.com/mi
 
 ### Github
 
-Clonar el proyecto de rocket con los submódulos de git. 
+Hacemos un fork de los siguientes 4 proyectos de stratio a nuestra cuenta de github de stratio:
+- rocket-workspace
+- rocket-core
+- rocket-driver
+- rocket-ui
+
+Clonar el proyecto "rocket-workspace". 
 
 ```bash
 git clone git@github.com:Stratio/rocket-workspace.git
+```
+
+En este punto los submódulos del proyecto rocket-workspace apuntan a github de stratio. Modificamos el archivo .gitmodules para hacer que los submódulos apunten a nuestro fork de estos proyectos. 
+Por ejemplo:
+
+```bash
+[submodule "rocket-core"]
+	path = rocket-core
+	url = https://github.com/stratio/rocket-core.git
+	branch = master
+
+[submodule "rocket-driver"]
+	path = rocket-driver
+	url = https://github.com/stratio/rocket-driver.git
+	branch = master
+
+[submodule "rocket-ui"]
+	path = rocket-ui
+	url = https://github.com/stratio/rocket-ui.git
+	branch = master
+```
+cambiar a:
+
+```bash
+[submodule "rocket-core"]
+path = rocket-core
+url = https://github.com/afernandez-stratio/rocket-core.git
+branch = master
+
+[submodule "rocket-driver"]
+path = rocket-driver
+url = https://github.com/afernandez-stratio/rocket-driver.git
+branch = master
+
+[submodule "rocket-ui"]
+path = rocket-ui
+url = https://github.com/afernandez-stratio/rocket-ui.git
+branch = master
 ```
 
 La primera vez necesitamos actualizar los submódulos:
@@ -173,6 +284,12 @@ Debemos de apuntar en todos los proyectos a **master**
 - rocket-driver
 - rocket-core
 - rocket-ui
+
+### Creación de python_venv
+
+1. Vamos al submódulo de rocket-core -> developer_utils -> python_env
+2. Ejecutamos el archivo __python-dev-env-creation.sh__. Esto nos creará el entorno de python en el root del workspace que posteriormente se usará para la ejecución del servidor.
+En mi caso: /home/antoniofernandez/develop/rocket/rocket-workspace/rocket-core/python_venv
 
 ### Maven
 
@@ -197,13 +314,50 @@ Posterior a tener aseguradas las versiones correctas, conda instalado y docker c
 
 ### ROCKET SERVIDOR:
 
-1. Vamos al submodulo de rocket-core -> developer_utils -> python_env
-2. Ejecutamos el __python-dev-env-creation.sh__ Esto nos creará una carpeta en el root del workspace que posteriormente se usará para la ejecución del servidor.
-3. Si usamos intelliJ tenemos que crear una Run Configuration:
+Si usamos intelliJ tenemos que crear una Run Configuration de tipo "Application":
 
 - En Build and Run: __Java 8 / -cp serving-api__
 - Main class: __com.stratio.sparta.serving.api.Sparta__
-- Env args: __ENABLE_SCHEDULING_PLANNED_QUALITY_RULES=true;MLFLOW_CONDA_HOME=/home/tu_user/miniconda3;SPARK_SECURITY_CUSTOM_CLASSLOADER_ENABLED=true;SPARTA_BOOTSTRAP_MODE=local;SPARTA_LOG_LEVEL=DEBUG;SPARTA_MLFLOW_LAUNCHER_CMD=/you_path/rocket-workspace/rocket-core/python_venv/bin/mlflow__
+- Env args: __ENABLE_SCHEDULING_PLANNED_QUALITY_RULES=true;MLFLOW_CONDA_HOME=/Mi_ruta/miniconda3;SPARK_SECURITY_CUSTOM_CLASSLOADER_ENABLED=true;SPARTA_BOOTSTRAP_MODE=local;SPARTA_LOG_LEVEL=DEBUG;SPARTA_MLFLOW_LAUNCHER_CMD=/Mi_ruta/rocket-workspace/rocket-core/python_venv/bin/mlflow__
+** Nota ** 
+Cambiar "Mi_ruta" con lo que corresponda.
+
+### TroubleShooting.
+
+- __Si en la ejecución de modelos de mlProjects obtenemos el siguiente error:__
+
+> MlFlow project execution has failed
+>
+> Exception:
+> MlFlow project execution has failed
+> /home/antoniofernandez/develop/rocket-workspace/rocket-core/python_venv/bin/python3.9: Error while finding module specification for 'rocket_python_driver.driver_launcher' (ModuleNotFoundError: No module named 'rocket_python_driver')
+
+Seguramente ha habido algún problema en la instalación del driver. Para volver a ejecutarlo:
+
+Comprobamos los entornos de python
+>conda env list
+
+Activamos el entorno .../python_venv
+> conda activate /home/antoniofernandez/develop/rocket/rocket-workspace/rocket-core/python_venv
+
+Una vez en el entorno del proyecto ejecutamos lo siguiente:
+> YOUR-PATH -> rocker-core -> rocket-python-driver ejecutamos el siguiente comando: ./python-installer.sh ./target/ 3.0.0-SNAPSHOT (o la versión que corresponda dentro del directorio target).
+
+- __Problemas al levantar el cluster de akka.__
+
+Revisar los ficheros /etc/hostname y /etc/hosts.
+
+Fichero /etc/hostname
+> antoniofernandez
+
+Fichero /etc/hosts
+> 127.0.0.1	localhost
+> 127.0.1.1	antoniofernandez
+> #127.0.1.1	Stratio.unassigned-domain	Stratio
+
+- __Al ejecutar Rocket -> No se encuentra la clase principal "com.stratio.sparta.serving.api.Sparta"__
+
+En este caso hemos borrado la carpeta ".idea" del raíz del proyecto y reconfigurado todo de nuevo.
 
 ### ROCKET UI
 
