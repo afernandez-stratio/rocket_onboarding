@@ -49,7 +49,7 @@ https://bootstrap.xray.labs.stratio.com/
     - Tenant: NONE y s000001
 
 - ENTORNO OSCAR:
-https://bootstrap.oscar.hetzner.stratio.com/#/login
+https://admin.k8s.oscar.labs.stratio.com
     - user admin 
     - pass 1234
 
