@@ -154,7 +154,7 @@ OJO con el archivo de configuración de maven (/usr/share/maven/conf/settings.xm
   <mirrors>
     <mirror>
       <id>stratio-snapshots</id>
-      <url>http://sodio.int.stratio.com/repository/public</url>
+      <url>http://qa.int.stratio.com/repository/public</url>
       <mirrorOf>central</mirrorOf>
     </mirror>
   </mirrors>
@@ -177,11 +177,12 @@ OJO con el archivo de configuración de maven (/usr/share/maven/conf/settings.xm
         </repository>
         <repository>
           <id>thirdparty-snapshots</id>
-          <url>http://sodio.int.stratio.com/repository/thirdparty-snapshots</url>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-        </repository>
+					<url>http://qa.int.stratio.com/repository/thirdparty-snapshots</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+
       </repositories>
       <pluginRepositories>
         <pluginRepository>
